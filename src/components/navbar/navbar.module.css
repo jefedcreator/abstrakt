@@ -1,0 +1,92 @@
+.navContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 0;
+}
+
+.navWrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.navWrapper > button{
+    border: none;
+    background: #335BFB;
+    border-radius: 10px;
+    color: white;
+    padding: 1rem;
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.navWrapper > a{
+    color: white;
+    font-family: 'DM Mono';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 39px;
+    text-decoration-line: none;
+    text-decoration: none;
+}
+
+.navWrapper > a, .navWrapper > a:hover, .navWrapper > a:focus, .navWrapper > a:active {
+    text-decoration: none;
+    color: white;
+}
+
+.wallet{
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    align-items: center;
+}
+
+.wallet a{
+    text-decoration: none;
+    text-decoration-style: none;
+    padding: 0.7rem;
+}
+
+.dropdown{
+    display: flex;
+    border: none;
+    padding: 1rem;
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    cursor: pointer;
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.wallet > :nth-child(2){
+    border: none;
+    background: #335BFB;
+    border-radius: 10px;
+    color: white;
+    padding: 1rem;
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFFFFF;
+    cursor: pointer;
+}

@@ -1,0 +1,61 @@
+.cover{
+    display: flex;
+    justify-content: center;
+    height: 50vh;
+    background:radial-gradient(circle at -100% 80%,rgba(38, 159, 132, 0.61) -200%, rgba(38, 46, 89, 1) 100%),radial-gradient(circle at 100% 80%,rgba(160, 97, 189, 0.59) 1%, rgba(38, 46, 89, 1) 100%);
+}
+
+.container{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.container > :nth-child(1){
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container > :nth-child(1) > span{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.container > :nth-child(1) > p{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    font-feature-settings: 'salt' on, 'liga' off;
+    color: #FFFFFF;
+}
+
+.container > :nth-child(2){
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+}
+
+.container > :nth-child(2) h6{
+    font-family: Inter;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: white;
+}
+
+.container > :nth-child(2) p{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 26px;
+    font-feature-settings: 'salt' on, 'liga' off;
+    color: #E4E4E4;
+}

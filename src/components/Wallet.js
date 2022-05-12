@@ -2,8 +2,9 @@ import React from "react";
 import { Dropdown, Stack, Spinner } from "react-bootstrap";
 import { formatBigNumber, truncateAddress } from "./../utils";
 import Identicon from "./ui/Identicon";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
-const Wallet = ({ address, amount, symbol, destroy }) => {
+const Wallet = ({ address, amount, symbol, destroy,showWallet,setShowWallet }) => {
   if (address) {
     return (
       <>
@@ -43,6 +44,7 @@ const Wallet = ({ address, amount, symbol, destroy }) => {
               className="d-flex align-items-center"
               onClick={() => {
                 destroy();
+                setShowWallet(!showWallet)
               }}
             >
               <i className="bi bi-box-arrow-right me-2 fs-4" />

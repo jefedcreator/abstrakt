@@ -1,0 +1,128 @@
+.cover{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200vh;
+    background: #262E59;
+}
+
+.container{
+    width: 90%;
+}
+
+.wrapper{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wrapper h3{
+    font-family: 'DM Mono';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 47px;
+    /* identical to box height */
+    color: #FFFFFF;
+}
+
+.wrapper p{
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 32px;
+    /* identical to box height */
+    color: #FFFFFF;
+}
+
+.popular{
+    padding: 10px;
+    border: 1.5px solid;
+    border-radius: 10px;
+    border-image: linear-gradient(to right,rgba(162, 99, 190, 1),rgba(37, 147, 128, 1))1;
+}
+
+.popular p{
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFFFFF;
+}
+
+.trending {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 50px;
+}
+    
+.trending > :nth-child(1) { grid-area: 1 / 1 / 2 / 2; }
+.trending > :nth-child(2) { grid-area: 1 / 2 / 2 / 3; }
+.trending > :nth-child(3) { grid-area: 1 / 3 / 2 / 4; }
+.trending > :nth-child(4) { grid-area: 1 / 4 / 2 / 5; }
+.trending > :nth-child(5) { grid-area: 2 / 4 / 3 / 5; }
+.trending > :nth-child(6) { grid-area: 2 / 3 / 3 / 4; }
+.trending > :nth-child(7) { grid-area: 2 / 2 / 3 / 3; }
+.trending > :nth-child(8) { grid-area: 2 / 1 / 3 / 2; }
+
+.trending > div{
+    border: 1px solid white;
+    border-radius: 1rem;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+} 
+
+.trending img{
+    width: 100%;
+}
+
+.details > :nth-child(1){
+    font-family: 'DM Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23px;
+
+    color: #BBBBBB;
+}
+
+.details > :nth-child(2){
+    font-family: 'DM Mono';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 25px;
+    color: #FFFFFF;
+}
+
+.details > :nth-child(3){
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.details span{
+    display: flex;
+    align-items: center;
+}
+
+.details span > p{
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 25px;
+    color: #FFFFFF;
+}
+
+.details img{
+    width: 1rem;
+}
+

@@ -1,0 +1,133 @@
+.cover{
+    display: flex;
+    justify-content: center;
+    background:radial-gradient(
+        50% 50% at bottom right,
+        rgba(48, 223, 154, 1) 10%,
+        rgba(38, 46, 89, 1) 100%),
+        radial-gradient(50% 50% at top left,
+     rgba(240, 134, 245, 1) 500%,
+      rgba(38, 46, 89, 1) 100%);
+
+    height: 120vh;
+}
+
+.container{
+    width: 90%;
+}
+
+
+.heroContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heroWrapper{
+    width: 60%;
+}
+
+.heroWrapper > h2{
+    font-family: 'DM Mono';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2.5rem;
+    line-height: 74px;
+    color: white;
+}
+
+.heroWrapper > p{
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 25px;
+    color: white;
+}
+
+.buttons{
+    display: flex;
+    width: 45%;
+    height: 5rem;
+    justify-content: space-between;
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFFFFF;
+    align-items: center;
+}
+
+.buttons button{
+    border: none;
+    outline: none;
+}
+
+.buttons > :nth-child(1){
+    background: #335BFB;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+    height: 50%;
+}
+
+.buttons img{
+    width: 20%;
+}
+
+.buttons > :nth-child(2){
+    color: white;
+    padding: 0 0.5rem;
+    background: none;
+    display: flex;
+    align-items: center;
+}
+
+.numbers{
+    display: flex;
+    width: 40%;
+    justify-content: space-between;
+}
+
+.numbers h5{
+    font-family: 'DM Mono';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 42px;
+    /* identical to box height */
+    color: #FFFFFF;
+}
+
+.numbers p{
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    /* identical to box height */
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.logo{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 5%;
+}
+
+.sponsors > img{
+    width: 50%;
+}
+
+.bannerContainer{
+    /* padding: 5rem; */
+}
+
+.bannerContainer > img{
+    width: 80%;
+}
+

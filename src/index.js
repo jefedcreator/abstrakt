@@ -11,6 +11,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@celo-tools/use-contractkit/lib/styles.css";
 import "react-toastify/dist/ReactToastify.min.css";
+import {isBrowser} from 'react-device-detect';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -28,7 +29,13 @@ ReactDOM.render(
         description: "A React Boilerplate for Celo Dapps",
       }}
     >
-      <App />
+      {
+        isBrowser?
+        <App />:
+        <div>
+          <p>sorry,only view on pc. mobile view coming soon</p>
+        </div>
+        }
     </ContractKitProvider>
   </React.StrictMode>,
   document.getElementById("root")
