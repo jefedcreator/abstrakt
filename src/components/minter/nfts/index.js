@@ -52,7 +52,7 @@ const fetchContractOwner = useCallback(async (minterContract) => {
     const _address = await fetchNftContractOwner(minterContract);
     setNftOwner(_address);
   }, []);
-  
+
   useEffect(() => {
     try {
       if (address && minterContract) {
@@ -70,10 +70,10 @@ if (address) {
         {!loading ? (
           <>
             <div className="d-flex justify-content-between align-items-center mb-4">
-              <h1 className="fs-4 fw-bold mb-0">{name}</h1>
-              {nftOwner === address ? (
+              <h1 className="fs-4 fw-bold mb-0 text-white">{name}</h1>
+              {/*{nftOwner === address ? (*/}
                 <AddNfts save={addNft} address={address} />
-              ) : null}
+              {/*) : null}*/}
             </div>
             <Row xs={1} sm={2} lg={3} className="g-3  mb-5 g-xl-4 g-xxl-5">
               {nfts.map((_nft) => (
@@ -99,9 +99,9 @@ NftList.propTypes = {
     minterContract: PropTypes.instanceOf(Object),
     updateBalance: PropTypes.func.isRequired,
   };
-  
+
   NftList.defaultProps = {
     minterContract: null,
   };
-  
+
 export default NftList;

@@ -1,26 +1,21 @@
 import React from 'react'
-import Wallet from '../Wallet'
 import heroImg from '../../assets/img/heroimg.png'
 import Styles from './header.module.css'
-import coinbase from '../../assets/img/Coinbase-logo 1.png'
-import celo from '../../assets/img/celo-logo.png'
 import arrowright from '../../assets/img/arrow-right.svg'
 import NavbarComp from '../navbar/navbar'
 
 
-const Header = ({address,destroy,connect,balance,getBalance,showWallet,setShowWallet}) => {
+const Header = ({address,destroy,connect,balance,getBalance}) => {
 
   return (
       <main className={Styles.cover}>
       <div className={Styles.container}>
         <NavbarComp
              address = {address}
-             destroy ={destroy} 
+             destroy ={destroy}
              connect={connect}
              balance={balance}
              getBalance={getBalance}
-             showWallet={showWallet}
-             setShowWallet={setShowWallet}
         />
         <div className={Styles.heroContainer}>
             <div className={Styles.heroWrapper}>
