@@ -18,12 +18,12 @@ const AddNfts = ({ save, address }) => {
   
     // check if all form data has been filled
     const isFormFilled = () =>
-        name && ipfsImage && description && attributes.length > 2;
+        name && ipfsImage && description;
   
     // close the popup modal
     const handleClose = () => {
       setShow(false);
-      setAttributes([]);
+      // setAttributes([]);
     };
   
     // display the popup modal
@@ -117,7 +117,7 @@ const AddNfts = ({ save, address }) => {
                 }}
                 placeholder="Product name"
               ></Form.Control>
-              <Form.Label>
+              {/* <Form.Label>
                 <h5>Properties</h5>
               </Form.Label>
               <Form.Control
@@ -175,7 +175,7 @@ const AddNfts = ({ save, address }) => {
                     {shape}
                   </option>
                 ))}
-              </Form.Control>
+              </Form.Control> */}
             </Form>
           </Modal.Body>
   
@@ -192,7 +192,6 @@ const AddNfts = ({ save, address }) => {
                   ipfsImage,
                   description,
                   ownerAddress: address,
-                  attributes,
                 });
                 handleClose();
               }}

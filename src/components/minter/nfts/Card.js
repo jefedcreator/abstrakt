@@ -29,7 +29,7 @@ const NftCard = ({ nft }) => {
         <Card.Body className="d-flex  flex-column text-center">
           <Card.Title>{name}</Card.Title>
           <Card.Text className="flex-grow-1">{description}</Card.Text>
-          <div>
+          {/* <div>
             <Row className="mt-2">
               {attributes.map((attribute, key) => (
                 <Col key={key}>
@@ -44,7 +44,7 @@ const NftCard = ({ nft }) => {
                 </Col>
               ))}
             </Row>
-          </div>
+          </div> */}
         </Card.Body>
       </Card>
     </Col>
