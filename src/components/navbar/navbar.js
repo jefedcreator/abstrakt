@@ -16,7 +16,6 @@ const NavbarComp = ({ destroy,connect,balance}) => {
          <Nav className={Styles.navContainer}>
             <Nav.Item className={Styles.navWrapper}>
             <Link to="/">Abstrakt</Link>
-
                     {
                         address ?
                         <div className={Styles.wallet}>
@@ -26,7 +25,7 @@ const NavbarComp = ({ destroy,connect,balance}) => {
                                 symbol="CELO"
                                 destroy={destroy}
                                 />
-                                <Link to="/create">Create</Link>
+                                <Link to="/create">NFT Collections</Link>
                         </div>
                         :
                         <button onClick={handleWalletCollect}>

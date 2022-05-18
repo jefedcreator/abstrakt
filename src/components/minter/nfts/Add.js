@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import { Button, Modal, Form, FloatingLabel } from "react-bootstrap";
 import { uploadToIpfs } from "../../../utils/minter";
 
-const COLORS = ["Red", "Green", "Blue", "Cyan", "Yellow", "Purple"];
-const SHAPES = ["Circle", "Square", "Triangle"];
 
 const AddNfts = ({ save, address }) => {
     const [name, setName] = useState("");
@@ -60,9 +58,9 @@ const AddNfts = ({ save, address }) => {
       <>
         <Button
           onClick={handleShow}
-          variant="dark"
+          variant="light"
           className="rounded-pill px-0"
-          style={{ width: "38px" }}
+          style={{ width: "40px" }}
         >
           <i className="bi bi-plus"></i>
         </Button>
