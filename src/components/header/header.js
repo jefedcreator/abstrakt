@@ -3,7 +3,7 @@ import heroImg from '../../assets/img/heroimg.png'
 import Styles from './header.module.css'
 import arrowright from '../../assets/img/arrow-right.svg'
 import NavbarComp from '../navbar/navbar'
-
+import { Link } from "react-router-dom";
 
 const Header = ({address,destroy,connect,balance,getBalance}) => {
 
@@ -22,7 +22,7 @@ const Header = ({address,destroy,connect,balance,getBalance}) => {
                 <h2>Create your own unique digital art</h2>
                 <p> Digital mintplace for crypto collections and nonfungible tokens(NFTs) Discover ultimate rare digital art</p>
                 <div className={Styles.buttons}>
-                    <div>Explore art</div>
+                    <Link to="/create">Explore arts</Link>
                     <div>
                        <p style={{'margin':'0'}}>Learn more</p>
                         <img src={arrowright} alt="" />

@@ -15,7 +15,7 @@ const Create= ({getBalance,minterContract,address,destroy,connect,balance}) => {
                 getBalance={getBalance}
             />
             <Nfts
-                name="My Collection"
+                name="My Collections"
                 updateBalance={getBalance}
                 minterContract={minterContract}
             />
