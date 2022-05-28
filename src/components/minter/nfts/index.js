@@ -10,7 +10,6 @@ import {
   getNfts,
   createNft,
   fetchNftContractOwner,
-  collectNft
 } from "../../../utils/minter";
 import { Row } from "react-bootstrap";
 
@@ -19,6 +18,7 @@ const NftList = ({ minterContract, name }) => {
     const [nfts, setNfts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [nftOwner, setNftOwner] = useState(null);
+    const [claimed, setClaimed] = useState(false);
 
 
 const getAssets = useCallback(async () => {
@@ -33,6 +33,7 @@ const getAssets = useCallback(async () => {
       setLoading(false);
     }
   }, [minterContract]);
+
 
 const addNft = async (data) => {
     try {
@@ -98,8 +99,7 @@ if (address) {
                   nft={{
                     ..._nft,
                   }}
-                  fetchContractOwner={fetchContractOwner}
-                  getAssets={getAssets}
+                  claimed = {claimed}
                 />
               ))}
             </Row>

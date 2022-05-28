@@ -13,7 +13,9 @@ contract MyNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
     Counters.Counter private _tokenIdCounter;
 
-    constructor() ERC721("MyNFT", "MNFT") {}
+    mapping(uint => bool) public claimed;
+
+    constructor() ERC721("Abstrakts", "ABTS") {}
 
     function safeMint(address to, string memory uri) public {
         uint256 tokenId = _tokenIdCounter.current();
@@ -69,8 +71,10 @@ contract MyNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     function collectNft(uint256 tokenId) public{
         require(getOwner(tokenId) != address(0), "this tokenId has not been minted");
         require(getOwner(tokenId) != msg.sender,"you own this nft");
+        require(!claimed[tokenId],"This nft has been claimed");
         require(balanceOf(msg.sender) <=3, "you can only collect three nfts at a time");
         _transfer(getOwner(tokenId),msg.sender, tokenId);
+        claimed[tokenId] = true;
     }
 
     function onERC721Received( address operator, address from, uint256 tokenId, bytes calldata data ) pure public returns (bytes4 validity) {

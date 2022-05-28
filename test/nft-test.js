@@ -136,4 +136,26 @@ describe("MyNFT", function () {
 
     expect(await myNFT.ownerOf(1)).to.equal(owner.address);
   });
+  it("Should revert nft if nft has been claimed", async function () {
+    const tokenURI_1 = "https://example.com/1";
+    const tokenURI_2 = "https://example.com/2";
+
+    const tx1 = await myNFT.connect(acc1).safeMint(acc1.address, tokenURI_1);
+    await tx1.wait();
+    const tx2 = await myNFT.connect(acc2).safeMint(acc2.address, tokenURI_2);
+    await tx2.wait();
+    
+    const NfTowner = await myNFT.ownerOf(1)
+
+    // const approval = await NfTowner.approve(myNFT.address, 1);
+    // await approval.wait()
+
+    // const approval = await myNFT.connect(acc2).setApprovalForAll(owner.address, true);
+    // await approval.wait()
+
+    const collect = await myNFT.collectNft(1);
+    await collect.wait();
+
+    expect(myNFT.connect(acc2).collectNft(1)).to.be.revertedWith('This nft has been claimed');
+  });
 });

@@ -9,9 +9,9 @@ import { toast } from "react-toastify";
 
 
 const NftCard = ({ nft }) => {
-  const { image, description, owner, name, index } = nft;
+  const { image, description, owner, name, index,claimed } = nft;
   const { performActions, address } = useContractKit();
-  const [loading, setLoading] = useState(false);
+  const [claim, setClaim] = useState();
   const minterContract = useMinterContract();
 
 
@@ -26,7 +26,24 @@ const NftCard = ({ nft }) => {
             console.log("Error collecting nft ", error);
         }
     });
-};
+  };
+
+  const fetchNftStatus = async (index) => {
+    try {
+        const claims = await minterContract.methods.claimed(index).call();
+        console.log(index, claims);
+        setClaim(claims)
+    } catch (e) {
+        console.log({e});
+    }
+  };
+
+  useEffect(
+    ()=>{
+     fetchNftStatus(index) 
+    }
+  )
+
 
   return (
     <Col key={index}>
@@ -53,9 +70,18 @@ const NftCard = ({ nft }) => {
             <Card.Text className="flex-grow-1">{description}</Card.Text>
           </div>
           <Row className="mt-2">
-            <button style={{border:'none',backgroundColor:'red',color:'white'}} onClick={()=>{collectNft(index)}}>
-              Claim
-            </button>
+            {
+              claim
+               ?
+                <button disabled style={{border:'none',backgroundColor:'grey',color:'white'}}>
+                  Claimed
+                </button>
+                 :
+               <button style={{border:'none',backgroundColor:'red',color:'white'}} onClick={()=>{collectNft(index)}}>
+                Claim
+               </button> 
+            }
+
           </Row>
         </Card.Body>
       </Card>
@@ -67,7 +93,6 @@ const NftCard = ({ nft }) => {
 
 NftCard.propTypes = {
   // props passed into this component
-  collectNft: PropTypes.func.isRequired,
   nft: PropTypes.instanceOf(Object).isRequired,
 };
 
