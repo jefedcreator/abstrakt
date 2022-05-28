@@ -4,6 +4,7 @@ pragma solidity ^0.8.2;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
@@ -50,5 +51,30 @@ contract MyNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
         returns (bool)
     {
         return super.supportsInterface(interfaceId);
+    }
+
+    function getOwner(uint256 tokenId) internal view returns(address owner){
+        owner = ownerOf(tokenId);
+        return owner;
+    } 
+
+
+    // function collectNft(uint256 tokenId) public{
+    //     require(getOwner(tokenId) != address(0), "this tokenId has not been minted");
+    //     require(getOwner(tokenId) != msg.sender,"you own this nft");
+    //     require(balanceOf(msg.sender) <=3, "you can only collect three nfts at a time");
+    //     safeTransferFrom(getOwner(tokenId),msg.sender, tokenId);
+    // }
+
+    function collectNft(uint256 tokenId) public{
+        require(getOwner(tokenId) != address(0), "this tokenId has not been minted");
+        require(getOwner(tokenId) != msg.sender,"you own this nft");
+        require(balanceOf(msg.sender) <=3, "you can only collect three nfts at a time");
+        _transfer(getOwner(tokenId),msg.sender, tokenId);
+    }
+
+    function onERC721Received( address operator, address from, uint256 tokenId, bytes calldata data ) pure public returns (bytes4 validity) {
+        validity = this.onERC721Received.selector;
+        return validity;
     }
 }

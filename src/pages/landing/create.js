@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Nfts from '../../components/minter/nfts'
 import NavbarComp from '../../components/navbar/navbar'
 import Styles from './create.module.css'
 
 const Create= ({getBalance,minterContract,address,destroy,connect,balance}) => {
+
   return (
     <main className={Styles.cover}>
         <div className={Styles.container}>

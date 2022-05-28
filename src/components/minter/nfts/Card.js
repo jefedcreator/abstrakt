@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import PropTypes from "prop-types";
 import { Card, Col, Badge, Stack, Row } from "react-bootstrap";
 import { truncateAddress } from "../../../utils";
 import Identicon from "../../ui/Identicon";
+import { useContractKit } from "@celo-tools/use-contractkit";
+import { useMinterContract } from "../../../hooks";
+import { toast } from "react-toastify";
+
 
 const NftCard = ({ nft }) => {
-  const { image, description, owner, name, index, attributes } = nft;
+  const { image, description, owner, name, index } = nft;
+  const { performActions, address } = useContractKit();
+  const [loading, setLoading] = useState(false);
+  const minterContract = useMinterContract();
+
+
+
+  const collectNft = async (index) => {
+    await performActions(async (kit) => {
+        const { defaultAccount } = kit;
+        try {
+            let transaction = await minterContract.methods.collectNft(index).send({ from: defaultAccount });
+            return transaction;
+        } catch (error) {
+            console.log("Error collecting nft ", error);
+        }
+    });
+};
 
   return (
     <Col key={index}>
@@ -26,33 +47,27 @@ const NftCard = ({ nft }) => {
           <img src={image} alt={description} style={{ objectFit: "cover" }} />
         </div>
 
-        <Card.Body className="d-flex  flex-column text-center">
-          <Card.Title>{name}</Card.Title>
-          <Card.Text className="flex-grow-1">{description}</Card.Text>
-          {/* <div>
-            <Row className="mt-2">
-              {attributes.map((attribute, key) => (
-                <Col key={key}>
-                  <div className="border rounded bg-light">
-                    <div className="text-secondary fw-lighter small text-capitalize">
-                      {attribute.trait_type}
-                    </div>
-                    <div className="text-secondary text-capitalize font-monospace">
-                      {attribute.value}
-                    </div>
-                  </div>
-                </Col>
-              ))}
-            </Row>
-          </div> */}
+        <Card.Body className="d-flex flex-row text-center justify-content-between">
+          <div>
+            <Card.Title>{name}</Card.Title>
+            <Card.Text className="flex-grow-1">{description}</Card.Text>
+          </div>
+          <Row className="mt-2">
+            <button style={{border:'none',backgroundColor:'red',color:'white'}} onClick={()=>{collectNft(index)}}>
+              Claim
+            </button>
+          </Row>
         </Card.Body>
       </Card>
     </Col>
   );
 };
 
+
+
 NftCard.propTypes = {
   // props passed into this component
+  collectNft: PropTypes.func.isRequired,
   nft: PropTypes.instanceOf(Object).isRequired,
 };
 

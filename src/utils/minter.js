@@ -112,3 +112,18 @@ export const fetchNftContractOwner = async (minterContract) => {
         console.log({e});
     }
 };
+
+//integrate the collectNft functionality
+export const collectNft = async (minterContract,performActions,index) => {
+    await performActions(async (kit) => {
+        const { defaultAccount } = kit;
+        try {
+            let transaction = await minterContract.methods
+                .collectNft(index)
+                .send({ from: defaultAccount });
+            return transaction;
+        } catch (error) {
+            console.log("Error collecting nft ", error);
+        }
+    });
+};

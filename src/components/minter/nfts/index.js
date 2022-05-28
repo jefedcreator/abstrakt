@@ -10,6 +10,7 @@ import {
   getNfts,
   createNft,
   fetchNftContractOwner,
+  collectNft
 } from "../../../utils/minter";
 import { Row } from "react-bootstrap";
 
@@ -47,6 +48,21 @@ const addNft = async (data) => {
     }
 };
 
+
+const collectNft = async (index) =>{
+  try {
+    setLoading(true);
+    await collectNft(minterContract,performActions,index)
+    toast(<NotificationSuccess text="Updating NFT list...." />);
+    getAssets();
+  } catch (error) {
+    console.log({ error });
+    toast(<NotificationError text="Failed to collect an NFT." />);
+  }finally{
+    setLoading(false)
+  }
+}
+
 const fetchContractOwner = useCallback(async (minterContract) => {
     // get the address that deployed the NFT contract
     const _address = await fetchNftContractOwner(minterContract);
@@ -82,6 +98,8 @@ if (address) {
                   nft={{
                     ..._nft,
                   }}
+                  fetchContractOwner={fetchContractOwner}
+                  getAssets={getAssets}
                 />
               ))}
             </Row>

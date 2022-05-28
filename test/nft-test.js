@@ -44,4 +44,96 @@ describe("MyNFT", function () {
     expect(await myNFT.tokenURI(0)).to.equal(tokenURI_1);
     expect(await myNFT.tokenURI(1)).to.equal(tokenURI_2);
   });
+
+  it("Should transfer nft properly", async function () {
+    const tokenURI_1 = "https://example.com/1";
+    const tokenURI_2 = "https://example.com/2";
+
+    const tx1 = await myNFT.connect(owner).safeMint(acc1.address, tokenURI_1);
+    await tx1.wait();
+    const tx2 = await myNFT.connect(owner).safeMint(acc2.address, tokenURI_2);
+    await tx2.wait();
+    
+    const NfTowner = await myNFT.ownerOf(1)
+
+    // const approval = await NfTowner.approve(myNFT.address, 1);
+    // await approval.wait()
+
+    const approval = await myNFT.connect(acc2).approve(owner.address, 1);
+    await approval.wait()
+
+    const collect = await myNFT.collectNft(1);
+    await collect.wait();
+
+
+    expect(await myNFT.ownerOf(1)).to.equal(owner.address);
+  });
+  it("Should transfer nft properly, setApprovalAll", async function () {
+    const tokenURI_1 = "https://example.com/1";
+    const tokenURI_2 = "https://example.com/2";
+
+    const tx1 = await myNFT.connect(owner).safeMint(acc1.address, tokenURI_1);
+    await tx1.wait();
+    const tx2 = await myNFT.connect(owner).safeMint(acc2.address, tokenURI_2);
+    await tx2.wait();
+    
+    const NfTowner = await myNFT.ownerOf(1)
+
+    // const approval = await NfTowner.approve(myNFT.address, 1);
+    // await approval.wait()
+
+    const approval = await myNFT.connect(acc2).setApprovalForAll(owner.address, true);
+    await approval.wait()
+
+    const collect = await myNFT.collectNft(1);
+    await collect.wait();
+
+
+    expect(await myNFT.ownerOf(1)).to.equal(owner.address);
+  });
+  it("Should transfer nft properly, no restictions", async function () {
+    const tokenURI_1 = "https://example.com/1";
+    const tokenURI_2 = "https://example.com/2";
+
+    const tx1 = await myNFT.safeMint(myNFT.address, tokenURI_1);
+    await tx1.wait();
+    const tx2 = await myNFT.safeMint(myNFT.address, tokenURI_2);
+    await tx2.wait();
+    
+    const NfTowner = await myNFT.ownerOf(1)
+
+    // const approval = await NfTowner.approve(myNFT.address, 1);
+    // await approval.wait()
+
+    // const approval = await myNFT.connect(acc2).setApprovalForAll(owner.address, true);
+    // await approval.wait()
+
+    const collect = await myNFT.collectNft(1);
+    await collect.wait();
+
+
+    expect(await myNFT.ownerOf(1)).to.equal(owner.address);
+  });
+  it("Should transfer nft properly, from person to person, no restriction", async function () {
+    const tokenURI_1 = "https://example.com/1";
+    const tokenURI_2 = "https://example.com/2";
+
+    const tx1 = await myNFT.connect(acc1).safeMint(acc1.address, tokenURI_1);
+    await tx1.wait();
+    const tx2 = await myNFT.connect(acc2).safeMint(acc2.address, tokenURI_2);
+    await tx2.wait();
+    
+    const NfTowner = await myNFT.ownerOf(1)
+
+    // const approval = await NfTowner.approve(myNFT.address, 1);
+    // await approval.wait()
+
+    // const approval = await myNFT.connect(acc2).setApprovalForAll(owner.address, true);
+    // await approval.wait()
+
+    const collect = await myNFT.collectNft(1);
+    await collect.wait();
+
+    expect(await myNFT.ownerOf(1)).to.equal(owner.address);
+  });
 });
