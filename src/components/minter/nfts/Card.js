@@ -6,10 +6,10 @@ import Identicon from "../../ui/Identicon";
 import { useContractKit } from "@celo-tools/use-contractkit";
 import { useMinterContract } from "../../../hooks";
 import { toast } from "react-toastify";
-
+import Owned from './owned'
 
 const NftCard = ({ nft }) => {
-  const { image, description, owner, name, index,claimed } = nft;
+  const { image, description, owner, name, index } = nft;
   const { performActions, address } = useContractKit();
   const [claim, setClaim] = useState();
   const minterContract = useMinterContract();
@@ -31,7 +31,6 @@ const NftCard = ({ nft }) => {
   const fetchNftStatus = async (index) => {
     try {
         const claims = await minterContract.methods.claimed(index).call();
-        console.log(index, claims);
         setClaim(claims)
     } catch (e) {
         console.log({e});

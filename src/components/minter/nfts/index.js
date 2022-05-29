@@ -12,6 +12,8 @@ import {
   fetchNftContractOwner,
 } from "../../../utils/minter";
 import { Row } from "react-bootstrap";
+import Owned from "./owned";
+import { ToggleButton } from "react-bootstrap";
 
 const NftList = ({ minterContract, name }) => {
     const { performActions, address } = useContractKit();
@@ -19,6 +21,7 @@ const NftList = ({ minterContract, name }) => {
     const [loading, setLoading] = useState(false);
     const [nftOwner, setNftOwner] = useState(null);
     const [claimed, setClaimed] = useState(false);
+    const [toggle, setToggle] = useState(false)
 
 
 const getAssets = useCallback(async () => {
@@ -75,6 +78,7 @@ const fetchContractOwner = useCallback(async (minterContract) => {
       if (address && minterContract) {
         getAssets();
         fetchContractOwner(minterContract);
+        console.log(nfts);
       }
     } catch (error) {
       console.log({ error });
@@ -87,12 +91,41 @@ if (address) {
         {!loading ? (
           <>
             <div className="d-flex justify-content-between align-items-center mb-4">
-              <h1 className="fs-4 fw-bold mb-0 text-white">{name}</h1>
+              {
+                toggle ?
+                <h1 className="fs-4 fw-bold mb-0 text-white">Collection</h1>
+                  :
+                <h1 className="fs-4 fw-bold mb-0 text-white">{name}</h1>
+              }
               {/*{nftOwner === address ? (*/}
+              <div style={{display: 'flex',alignItems:'center'}}>
+                {
+                  toggle ?
+                  <button onClick={() => setToggle(!toggle)} style={{border:'none',backgroundColor:'red',color:'white', padding:'0.5rem', borderRadius:'5px', marginRight:'1rem'}}>
+                    Collect
+                  </button>:
+                  <button onClick={() => setToggle(!toggle)} style={{border:'none',backgroundColor:'red',color:'white',padding:'0.5rem',borderRadius:'5px', marginRight:'1rem'}}>
+                    My collection
+                  </button>
+                }
                 <AddNfts save={addNft} address={address} />
+              </div>
               {/*) : null}*/}
             </div>
-            <Row xs={1} sm={2} lg={3} className="g-3  mb-5 g-xl-4 g-xxl-5">
+            {
+              toggle ?
+              <Row xs={1} sm={2} lg={3} className="g-3  mb-5 g-xl-4 g-xxl-5">
+              {
+                nfts.filter((nft) => (Number(address) == Number(nft.owner))).map((nft) =>
+                 ( <Owned
+                    key={nft.index}
+                    nft={{...nft}}
+                  />)
+                  )
+                }
+              </Row>
+              :
+              <Row xs={1} sm={2} lg={3} className="g-3  mb-5 g-xl-4 g-xxl-5">
               {nfts.map((_nft) => (
                 <Nft
                   key={_nft.index}
@@ -103,6 +136,7 @@ if (address) {
                 />
               ))}
             </Row>
+            }       
           </>
         ) : (
           <Loader />
