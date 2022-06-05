@@ -22,7 +22,7 @@ const NftList = ({ minterContract, name }) => {
     const [nftOwner, setNftOwner] = useState(null);
     const [claimed, setClaimed] = useState(false);
     const [toggle, setToggle] = useState(false)
-
+    const [empty, setEmpty] = useState(false)
 
 const getAssets = useCallback(async () => {
     try {
@@ -67,6 +67,13 @@ const collectNft = async (index) =>{
   }
 }
 
+const owned = () =>{
+  if (nfts.filter((nft) => (Number(address) == Number(nft.owner))).length ==  0) {
+  setEmpty(true)
+  } else {
+    setEmpty(false)
+  }
+}
 const fetchContractOwner = useCallback(async (minterContract) => {
     // get the address that deployed the NFT contract
     const _address = await fetchNftContractOwner(minterContract);
@@ -78,6 +85,7 @@ const fetchContractOwner = useCallback(async (minterContract) => {
       if (address && minterContract) {
         getAssets();
         fetchContractOwner(minterContract);
+        owned()
         console.log(nfts);
       }
     } catch (error) {
@@ -116,13 +124,18 @@ if (address) {
               toggle ?
               <Row xs={1} sm={2} lg={3} className="g-3  mb-5 g-xl-4 g-xxl-5">
               {
-                nfts.filter((nft) => (Number(address) == Number(nft.owner))).map((nft) =>
-                 ( <Owned
-                    key={nft.index}
-                    nft={{...nft}}
-                  />)
-                  )
-                }
+                empty ? 
+                  <div style={{width:'100%',height:'70vh',display:'flex', alignItems:'center', justifyContent:'center'}}>
+                    <p className="fs-4 fw-light mb-0 text-white text-center">Your collection is currently empty. Collect abstraksts from the marketplace or mint some 😉</p>
+                  </div>
+                  :
+                  nfts.filter((nft) => (Number(address) == Number(nft.owner))).map((nft) =>
+                  ( <Owned
+                     key={nft.index}
+                     nft={{...nft}}
+                   />)
+                   )
+              }
               </Row>
               :
               <Row xs={1} sm={2} lg={3} className="g-3  mb-5 g-xl-4 g-xxl-5">
