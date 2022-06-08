@@ -44,17 +44,31 @@
     color: white;
 }
 
-.wallet{
+.wallet > div{
     display: flex;
     justify-content: space-between;
     width: 30%;
     align-items: center;
 }
 
-.wallet a{
+.wallet > div a{
     text-decoration: none;
     text-decoration-style: none;
     padding: 0.7rem;
+    border: none;
+    background: #335BFB;
+    border-radius: 10px;
+    color: white;
+    padding: 0.8rem;
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFFFFF;
+    cursor: pointer;
+    margin-left: 1rem;
+    
 }
 
 .dropdown{
