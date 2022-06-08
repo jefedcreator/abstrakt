@@ -18,7 +18,7 @@ const Trending = () => {
         <div className={Styles.wrapper}>
           <div>
             <h3>Trending Items</h3>
-            <p>Explore whats trending on Artry</p>
+            <p>Explore whats trending on Abstrakt</p>
           </div>
           <div className={Styles.popular}>
             <p>Popular NFTs</p>

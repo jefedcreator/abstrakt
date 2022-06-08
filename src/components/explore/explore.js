@@ -11,7 +11,7 @@ const Explore = () => {
           <div className={Styles.wrapper}>
             <div>
               <h3>Explore Collections</h3>
-              <p>Explore the fastest selling collections on Artry</p>
+              <p>Explore the fastest selling collections on Abstrakt</p>
             </div>
             <div className={Styles.collection}>
               <p>Collections</p>
