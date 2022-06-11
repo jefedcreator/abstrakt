@@ -68,7 +68,6 @@ const collectNft = async (index) =>{
 }
 
 const owned = nfts.filter((nft) => (Number(address) == Number(nft.owner))).length
-
 const handleOwned = () =>{
   if ( owned == 0 ) {
   setEmpty(true)
@@ -88,12 +87,11 @@ const fetchContractOwner = useCallback(async (minterContract) => {
         getAssets();
         fetchContractOwner(minterContract);
         handleOwned()
-        console.log(nfts);
       }
     } catch (error) {
       console.log({ error });
     }
-}, [minterContract, address, getAssets, fetchContractOwner,owned]);
+}, [minterContract, address, getAssets, fetchContractOwner, owned]);
 
 if (address) {
     return (
