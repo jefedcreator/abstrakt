@@ -20,7 +20,6 @@ const NftList = ({ minterContract, name }) => {
     const [nfts, setNfts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [nftOwner, setNftOwner] = useState(null);
-    const [claimed, setClaimed] = useState(false);
     const [toggle, setToggle] = useState(false)
     const [empty, setEmpty] = useState(false)
 
@@ -91,7 +90,7 @@ const fetchContractOwner = useCallback(async (minterContract) => {
     } catch (error) {
       console.log({ error });
     }
-}, [minterContract, address, getAssets, fetchContractOwner, owned]);
+}, [minterContract, address, getAssets, fetchContractOwner,owned])
 
 if (address) {
     return (
@@ -145,7 +144,6 @@ if (address) {
                   nft={{
                     ..._nft,
                   }}
-                  claimed = {claimed}
                 />
               ))}
             </Row>

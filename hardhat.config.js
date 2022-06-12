@@ -1,5 +1,7 @@
 require("@nomiclabs/hardhat-waffle");
 require('dotenv').config({path: '.env'});
+require('hardhat-deploy');
+require("@nomiclabs/hardhat-ethers")
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -34,6 +36,10 @@ const getEnv = (variable, optional = false) => {
  */
  module.exports = {
   solidity: "0.8.4",
+  defaultNetwork: "alfajores",
+  namedAccounts: {
+    deployer: 0
+  },
   networks: {
     alfajores: {
       url: "https://alfajores-forno.celo-testnet.org",
